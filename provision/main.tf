@@ -1,10 +1,10 @@
-variable "region" {
+variable "aws_region" {
   default = "us-east-2"
 }
 
 provider "aws" {
   profile = "interviews-provision"
-  region  = "${var.region}"
+  region  = "${var.aws_region}"
 }
 
 # terraform {
@@ -19,6 +19,7 @@ provider "aws" {
 module "users" {
   source = "./iam-users"
 
+  aws_region      = "${var.aws_region}"
   total_users     = "5"
   tf_state_bucket = "beer-bucket"
 }
