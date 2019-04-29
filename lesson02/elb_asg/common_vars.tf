@@ -19,7 +19,7 @@ variable "tags" {
 
   default = {
     Name     = "sample-app"
-    owner    = "carlos.castro@wizeline.com"
+    owner    = "devops@wizeline.com"
     bu       = "app"
     product  = "manager"
     preserve = "true"
