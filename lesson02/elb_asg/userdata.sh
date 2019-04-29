@@ -11,4 +11,4 @@ sudo service docker start
 #but still, let's add the ec2-user to the docker group
 usermod -a -G docker ec2-user 
  #Run the nginx 
-docker run -d -p 80:80 nginx:${docker_tag}
+docker run -d -p 80:80 --restart=always nginx:${docker_tag}

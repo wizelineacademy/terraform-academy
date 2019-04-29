@@ -1,12 +1,8 @@
-# data "aws_vpc" "selected" {
-#   default = true
-# }
+
 //list of subnets
 data "aws_subnet_ids" "vpc_subnets" {
   vpc_id = "${aws_default_vpc.default.id}"
 }
-
-//id  =>"${data.aws_subnet_ids.vpc_subnets.ids[index]}"
 
 data "aws_availability_zones" "available" {}
 
