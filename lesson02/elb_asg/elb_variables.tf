@@ -1,13 +1,15 @@
-
 variable "cross_zone_load_balancing" {
   default = "true"
 }
+
 variable "connection_draining" {
   default = "true"
 }
+
 variable "connection_draining_timeout" {
   default = 100
 }
+
 variable "internal" {
   default = false
 }
@@ -17,15 +19,16 @@ variable "elb_name" {
 }
 
 variable "elb_listener" {
-  default= [
+  default = [
     {
       instance_port     = "80"
       instance_protocol = "HTTP"
       lb_port           = "80"
       lb_protocol       = "HTTP"
-    }
+    },
   ]
-} 
+}
+
 variable "elb_health_check" {
   default = [
     {

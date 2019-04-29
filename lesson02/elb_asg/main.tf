@@ -28,36 +28,38 @@ resource "aws_launch_configuration" "lc" {
   lifecycle {
     create_before_destroy = true
   }
-  name_prefix                 = "${var.metadata["appname"]}-${var.env}-lc-${var.metadata["appversion"]}-"
-  image_id                    =  "${data.aws_ami.amazon_linux.id}"
-  instance_type               = "${var.instance_type}"
-  security_groups             = ["${aws_security_group.web.id}"]
+
+  name_prefix     = "${var.metadata["appname"]}-${var.env}-lc-${var.metadata["appversion"]}-"
+  image_id        = "${data.aws_ami.amazon_linux.id}"
+  instance_type   = "${var.instance_type}"
+  security_groups = ["${aws_security_group.web.id}"]
+
   //iam_instance_profile        = "${var.iam_role}" //Optional
   user_data                   = "${data.template_file.deploy_sh.rendered}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "${var.associate_public_ip_address}"
-
 }
 
 #===========================================
 #  Auto scaling Group
 #===========================================
 resource "aws_autoscaling_group" "asg" {
-  name_prefix          = "${var.metadata["appname"]}-${var.env}-asg-${var.metadata["appversion"]}-"
-  launch_configuration = "${aws_launch_configuration.lc.name}"
-  availability_zones   =  ["${data.aws_availability_zones.available.zone_ids}"]
-  load_balancers       = ["${aws_elb.elb.id}"]
-  health_check_type    = "${var.health_check_type}"
+  name_prefix               = "${var.metadata["appname"]}-${var.env}-asg-${var.metadata["appversion"]}-"
+  launch_configuration      = "${aws_launch_configuration.lc.name}"
+  availability_zones        = ["${data.aws_availability_zones.available.zone_ids}"]
+  load_balancers            = ["${aws_elb.elb.id}"]
+  health_check_type         = "${var.health_check_type}"
   health_check_grace_period = "${var.health_check_grace_period}"
-  default_cooldown = "${var.default_cooldown}"
-  
+  default_cooldown          = "${var.default_cooldown}"
+
   min_size              = "${var.min_size}"
   max_size              = "${var.max_size}"
   wait_for_elb_capacity = "${var.min_size}"
 
   desired_capacity = "${var.desired_capacity}"
 
-  vpc_zone_identifier       = ["${data.aws_subnet_ids.vpc_subnets.ids}"]
+  vpc_zone_identifier = ["${data.aws_subnet_ids.vpc_subnets.ids}"]
+
   // autoscaling group metrics as a group
   #wait_for_capacity_timeout = "20m"
   # metrics_granularity       = "${var.metrics_granularity}"
@@ -85,39 +87,39 @@ resource "aws_autoscaling_group" "asg" {
 #  Elastic Load Balancer
 #===========================================
 resource "aws_elb" "elb" {
-  name                        = "${var.elb_name}-elb-${var.env}"
-  subnets                    = ["${data.aws_subnet_ids.vpc_subnets.ids}"]
-  security_groups             = ["${aws_security_group.web.id}"]
-  tags = "${merge(var.tags, map("Name", format("%s", var.elb_name)))}"
+  name            = "${var.elb_name}-elb-${var.env}"
+  subnets         = ["${data.aws_subnet_ids.vpc_subnets.ids}"]
+  security_groups = ["${aws_security_group.web.id}"]
+  tags            = "${merge(var.tags, map("Name", format("%s", var.elb_name)))}"
 
   listener     = ["${var.elb_listener}"]
   health_check = ["${var.elb_health_check}"]
+
   //ssl_certificate_id = "arn"
   //ssl_certificate_id = "${data.aws_acm_certificate.cert.arn}"
-  cross_zone_load_balancing   = "${var.cross_zone_load_balancing}"
+  cross_zone_load_balancing = "${var.cross_zone_load_balancing}"
+
   connection_draining         = "${var.connection_draining}"
   connection_draining_timeout = "${var.connection_draining_timeout}"
   internal                    = "${var.internal}"
-
 }
 
 resource "aws_security_group" "web" {
-  name_prefix        = "web"
+  name_prefix = "web"
   description = "Allow web traffic"
   vpc_id      = "${aws_default_vpc.default.id}"
 
-   ingress {
+  ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-   egress {
+  egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
 }
