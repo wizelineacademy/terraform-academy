@@ -11,9 +11,3 @@ variable "associate_public_ip_address" {
 variable "iam_role" {
   default = ""
 }
-
-
-variable "image_id" {
-  description = "ami id"
-  default = ""
-}

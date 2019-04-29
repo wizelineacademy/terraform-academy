@@ -24,6 +24,3 @@ variable "metrics_granularity" {
 variable "health_check_type" {
   default = "ELB"
 }
-variable "cooldown" {
-  default = 700
-}

@@ -2,7 +2,6 @@
 ## hostname setup
 hostnamectl set-hostname ${HOSTNAME}
 #Update installed pacakges
-#yum update -y
  #Install docker
 yum install -y docker
  #Start Docker

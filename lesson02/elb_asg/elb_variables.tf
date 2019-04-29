@@ -16,7 +16,7 @@ variable "elb_name" {
   default = "sample-app-elb"
 }
 
-variable "elb-listener" {
+variable "elb_listener" {
   default= [
     {
       instance_port     = "80"
@@ -26,7 +26,7 @@ variable "elb-listener" {
     }
   ]
 } 
-variable "elb-health-check" {
+variable "elb_health_check" {
   default = [
     {
       target              = "HTTP:80/"

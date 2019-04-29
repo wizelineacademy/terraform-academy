@@ -1,9 +1,9 @@
-data "aws_vpc" "selected" {
-  default = true
-}
+# data "aws_vpc" "selected" {
+#   default = true
+# }
 //list of subnets
 data "aws_subnet_ids" "vpc_subnets" {
-  vpc_id = "${data.aws_vpc.selected.id}"
+  vpc_id = "${aws_default_vpc.default.id}"
 }
 //id  =>"${data.aws_subnet_ids.vpc_subnets.ids[index]}"
 

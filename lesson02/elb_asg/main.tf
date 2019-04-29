@@ -1,15 +1,25 @@
 // Configure AWS Cloud provider
 provider "aws" {
-  region = "${var.aws-region}"
+  region = "${var.aws_region}"
 }
 
-# terraform {
-#   backend "s3" {
-#     bucket = "sample-app-terraform"
-#     key    = "terraform/lesson_2.tfstate"
-#     region = "us-east-1"
-#   }
-# }
+terraform {
+  backend "s3" {
+    bucket = "wizeline-academy-terraform"
+    key    = "terraform-academy/lessons2/terraform_lessons2.tfstate"
+    region = "us-east-2"
+  }
+}
+
+#--------------------------------------------------------------
+# default VPC
+# https://www.terraform.io/docs/providers/aws/r/default_vpc.html
+#--------------------------------------------------------------
+resource "aws_default_vpc" "default" {
+  tags = {
+    Name = "Default VPC"
+  }
+}
 
 #--------------------------------------------------------------
 # Launch configuration
@@ -80,8 +90,8 @@ resource "aws_elb" "elb" {
   security_groups             = ["${aws_security_group.web.id}"]
   tags = "${merge(var.tags, map("Name", format("%s", var.elb_name)))}"
 
-  listener     = ["${var.elb-listener}"]
-  health_check = ["${var.elb-health-check}"]
+  listener     = ["${var.elb_listener}"]
+  health_check = ["${var.elb_health_check}"]
   //ssl_certificate_id = "arn"
   //ssl_certificate_id = "${data.aws_acm_certificate.cert.arn}"
   cross_zone_load_balancing   = "${var.cross_zone_load_balancing}"
@@ -94,7 +104,7 @@ resource "aws_elb" "elb" {
 resource "aws_security_group" "web" {
   name_prefix        = "web"
   description = "Allow web traffic"
-  vpc_id      = "${data.aws_vpc.selected.id}"
+  vpc_id      = "${aws_default_vpc.default.id}"
 
    ingress {
     from_port   = 80

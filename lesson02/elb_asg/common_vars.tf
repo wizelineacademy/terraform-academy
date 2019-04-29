@@ -1,4 +1,4 @@
-variable "aws-region" {
+variable "aws_region" {
   default = "us-east-1"
 }
 
@@ -13,13 +13,6 @@ variable "metadata" {
 variable "env" {
    description = "string for the enviroment, allowed values develop, uat, prod"
    default= "develop"
-}
-
-
-variable "vpc_id" {
-  default = {
-    develop = "vpc-8b73c9ef"
-  }  
 }
 
 variable "tags" {
