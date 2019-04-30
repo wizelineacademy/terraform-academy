@@ -1,7 +1,7 @@
-output "web-ip" {
+output "web_ip" {
   value = "${aws_instance.web.public_ip}"
 }
 
-output "web-dns" {
+output "web_dns" {
   value = "${aws_route53_record.dns-web.name}"
 }
