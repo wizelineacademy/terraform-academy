@@ -3,5 +3,5 @@ output "web_ip" {
 }
 
 output "web_dns" {
-  value = "${aws_route53_record.dns-web.name}"
+  value = "${aws_route53_record.dns_web.name}"
 }
