@@ -6,7 +6,6 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "wizeline-academy-terraform"
-    key    = "academy-user-N/terraform-academy/lesson2/terraform_lesson2.tfstate"
     region = "us-east-2"
   }
 }
