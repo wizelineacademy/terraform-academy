@@ -33,8 +33,7 @@ resource "aws_launch_configuration" "lc" {
   image_id        = "${data.aws_ami.amazon_linux.id}"
   instance_type   = "${var.instance_type}"
   security_groups = ["${aws_security_group.web.id}"]
-
-  //iam_instance_profile        = "${var.iam_role}" //Optional
+  //iam_instance_profile        = "${var.iam_role}" //Optional ami role assigned to the EC2 instance
   user_data                   = "${data.template_file.deploy_sh.rendered}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "${var.associate_public_ip_address}"
@@ -60,9 +59,14 @@ resource "aws_autoscaling_group" "asg" {
 
   vpc_zone_identifier = ["${data.aws_subnet_ids.vpc_subnets.ids}"]
 
-  // autoscaling group metrics as a group
-  #wait_for_capacity_timeout = "20m"
+  # A maximum duration that Terraform should wait for ASG instances to be healthy before timing out.
+  # wait_for_capacity_timeout = "20m"
+  #
+  # autoscaling group metrics as a group 
+  # https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_EnableMetricsCollection.html
+  #
   # metrics_granularity       = "${var.metrics_granularity}"
+  # all metrics https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-monitoring.html
   # enabled_metrics = [
   #   "GroupDesiredCapacity",
   #   "GroupInServiceInstances",
@@ -95,8 +99,8 @@ resource "aws_elb" "elb" {
   listener     = ["${var.elb_listener}"]
   health_check = ["${var.elb_health_check}"]
 
-  //ssl_certificate_id = "arn"
-  //ssl_certificate_id = "${data.aws_acm_certificate.cert.arn}"
+  # Variables to enabled SSL on your ELB
+  #ssl_certificate_id = "${data.aws_acm_certificate.cert.arn}"
   cross_zone_load_balancing = "${var.cross_zone_load_balancing}"
 
   connection_draining         = "${var.connection_draining}"
