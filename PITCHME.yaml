@@ -42,7 +42,7 @@ published : true
 # Highlight (Code) Setting
 # Doc: https://gitpitch.com/docs/settings/highlight
 #
-highlight : vs
+highlight : atom-one-dark
 
 #
 # Twitter Card Settings [Pro Only]

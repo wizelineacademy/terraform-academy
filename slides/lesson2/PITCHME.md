@@ -9,21 +9,15 @@
 ## Define A Launch Configuration
 @title[Define A Launch Configuration]
 
----?code=lesson02/main.tf
++++?code=lesson02/main.tf
 
 @[23-41](Lauch config)
 
 ---
 @title[Create An AutoScaling Group]
----?code=lesson02/main.tf
++++?code=lesson02/main.tf
 
-@snap[north span-20]
-## Create An AutoScaling Group
-@snapend
-
-@snap[south span-60]
-@[45-61](Autoscaling)
-@snapend
+@[43-70](Autoscaling)
 
 ---?color=#E58537
 @title[Add A Little Imagination]
