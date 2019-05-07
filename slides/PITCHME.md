@@ -1,10 +1,10 @@
-# Let's Get Started
+# Terraform Acadamy
 
 ---
 
 ## Add Some Slide Candy
 
-![](assets/img/presentation.png)
+![](assets/img/background.png)
 
 ---
 @title[Customize Slide Layout]
@@ -37,10 +37,10 @@
 @img[shadow](slides/assets/img/background.png)
 @snapend
 
----?image=slides/assets/img/background.png
+---?image=assets/img/background.png
 
 @snap[north span-100 headline]
-## Now It's Your Turn
+## Now It's Your Turn Ch
 @snapend
 
 @snap[south span-100 text-06]
