@@ -6,30 +6,25 @@
 
 ---
 
-## Define A Launch Configuration
-@title[Define A Launch Configuration]
-
----?code=lesson02/main.tf&title=Terraform Main
-@snap[span-90]
-@[23-41](Lauch config)
-@[43-75](Autoscaling)
 @snapend
----?color=#E58537
-@title[Add A Little Imagination]
+@title[Agenda]
 
 @snap[north-west]
-#### Add a splash of @color[cyan](**color**) and you are ready to start presenting...
+#### In this lesson we will be creating...
 @snapend
 
 @snap[west span-55]
 @ul[spaced text-white]
-- You will be amazed
-- What you can achieve
-- *With a little imagination...*
-- And **GitPitch Markdown**
+- AutoScaling Group
+- Launch Configuration
+- Load Balancer
 @ulend
 @snapend
+---?code=lesson02/main.tf&title=Terraform Main
+@snap[span-90]
+@[1-11](provider)
+@[23-39](Lauch configuration)
+@[43-65](Autoscaling)
+@[66-84](Autoscaling metrics)
+@[89-104](Load Balancer)
 
-@snap[east span-45]
-@img[shadow](assets/img/background.png)
-@snapend
