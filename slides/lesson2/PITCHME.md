@@ -9,15 +9,10 @@
 ## Define A Launch Configuration
 @title[Define A Launch Configuration]
 
-+++?code=lesson02/main.tf
+---?code=lesson02/main.tf&title=Terraform Main
 
 @[23-41](Lauch config)
-
----
-@title[Create An AutoScaling Group]
-+++?code=lesson02/main.tf
-
-@[43-70](Autoscaling)
+@[43-75](Autoscaling)
 
 ---?color=#E58537
 @title[Add A Little Imagination]
