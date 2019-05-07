@@ -24,7 +24,8 @@
 @snap[span-90]
 @[1-11](provider)
 @[23-39](Lauch configuration)
-@[43-65](Autoscaling)
+@[43-55](Autoscaling part 1)
+@[55-65](Autoscaling part 2)
 @[66-84](Autoscaling metrics)
 @[89-104](Load Balancer)
 
