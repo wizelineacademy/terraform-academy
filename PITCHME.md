@@ -2,11 +2,11 @@
 @title[Introduction]
 
 @snap[west text-25 text-bold text-black]
-Wizeline Acadamy<br>*Terraform*<br>*Infrastructure as Code*
+Wizeline Acadamy
 @snapend
 
-@snap[south-west byline text-white text-06]
-quick note
+@snap[west byline text-white text-06]
+<br>*Terraform*<br>*Infrastructure as Code*
 @snapend
 
 ---
