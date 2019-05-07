@@ -1,20 +1,26 @@
+---?color=var(--color-light-gray-2)
+@title[Lesson 02 - Scale Your App]
+
 # Lesson 02 - Scale Your App
 
 ---
 
 ## Define A Launch Configuration
+@title[Define A Launch Configuration]
 
 ---?code=lesson02/elb_asg/main.tf
 
 @[23-41](Lauch config)
 
-![](assets/img/background.png)
-
 ---
-@title[Customize Slide Layout]
+@title[Create An AutoScaling Group]
 
-@snap[west span-50]
+@snap[north span-50]
 ## Create An AutoScaling Group
+@snapend
+
+@snap[south span-50]
+@[45-61](Autoscaling)
 
 @snapend
 
@@ -36,14 +42,4 @@
 
 @snap[east span-45]
 @img[shadow](assets/img/background.png)
-@snapend
-
----?image=slides/assets/img/background.png
-
-@snap[north span-100 headline]
-## Now It's Your Turn Ch
-@snapend
-
-@snap[south span-100 text-06]
-[Click here to jump straight into the interactive feature guides in the GitPitch Docs @fa[external-link]](https://gitpitch.com/docs/getting-started/tutorial/)
 @snapend
