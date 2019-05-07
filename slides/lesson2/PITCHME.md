@@ -1,7 +1,8 @@
 ---?color=var(--color-light-gray-2)
 @title[Lesson 02 - Scale Your App]
 
-# Lesson 02 - Scale Your App
+## Lesson 02 
+### Scale Your App
 
 ---
 
@@ -20,7 +21,7 @@
 ## Create An AutoScaling Group
 @snapend
 
-@snap[south span-80]
+@snap[south span-60]
 @[45-61](Autoscaling)
 @snapend
 
