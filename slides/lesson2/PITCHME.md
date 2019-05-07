@@ -14,7 +14,7 @@
 @snapend
 
 @snap[west span-55]
-@ul[spaced text-white]
+@ul[spaced text-black]
 - AutoScaling Group
 - Launch Configuration
 - Load Balancer
