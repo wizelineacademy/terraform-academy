@@ -9,6 +9,4 @@ Wizeline Acadamy
 <br>*Terraform*<br>*Infrastructure as Code*
 @snapend
 
----
-
 ---?include=slides/lesson2/PITCHME.md
