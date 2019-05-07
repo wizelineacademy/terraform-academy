@@ -8,20 +8,20 @@
 ## Define A Launch Configuration
 @title[Define A Launch Configuration]
 
----?code=lesson02/elb_asg/main.tf
+---?code=lesson02/main.tf
 
 @[23-41](Lauch config)
 
 ---
 @title[Create An AutoScaling Group]
+---?code=lesson02/main.tf
 
-@snap[north span-50]
+@snap[north span-20]
 ## Create An AutoScaling Group
 @snapend
 
-@snap[south span-50]
+@snap[south span-80]
 @[45-61](Autoscaling)
-
 @snapend
 
 ---?color=#E58537
