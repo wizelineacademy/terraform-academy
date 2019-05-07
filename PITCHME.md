@@ -3,7 +3,7 @@
 
 @snap[west text-25 text-bold text-black]
 Wizeline Academy
-@css[text-black text-06]<br>*Terraform*<br>*Infrastructure as Code*
+@css[text-black text-06](<br>*Terraform*<br>*Infrastructure as Code*)
 @snapend
 
 ---?include=slides/lesson2/PITCHME.md
