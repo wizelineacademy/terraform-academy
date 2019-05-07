@@ -34,10 +34,10 @@
 @snapend
 
 @snap[east span-45]
-@img[shadow](assets/img/conference.png)
+@img[shadow](./assets/img/background.png)
 @snapend
 
----?image=assets/img/background.png
+---?image=./assets/img/background.png
 
 @snap[north span-100 headline]
 ## Now It's Your Turn
