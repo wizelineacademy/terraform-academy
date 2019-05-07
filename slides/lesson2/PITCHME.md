@@ -21,6 +21,7 @@
 ---?code=lesson02/main.tf&title=Terraform Main
 @snap[span-90]
 @[1-11](provider)
+@[16-22](setup default vpc)
 @[23-39](Lauch configuration)
 @[43-55](Autoscaling part 1)
 @[55-65](Autoscaling part 2)
