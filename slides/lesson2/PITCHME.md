@@ -2,7 +2,7 @@
 @title[Lesson 02 - Scale Your App]
 
 ## Lesson 02 
-### Scale Your App
+#### Scale Your App
 
 ---
 
