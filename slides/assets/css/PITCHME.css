@@ -85,11 +85,13 @@ box-shadow: none;
 }
 
 .reveal pre code {
-font-size: 1.2em;
+font-size: 1.0em;
 line-height: 1.2;
 border-radius: 10px;
-max-height: 60vh !important;
-overflow: hidden !important;
+max-height: 66vh !important;
+overflow-y: hidden !important;
+overflow-x: auto !important;
+
 }
 
 @media (device-width: 100vw) and (device-height: 100vh) {
