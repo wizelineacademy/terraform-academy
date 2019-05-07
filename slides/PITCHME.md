@@ -37,7 +37,7 @@
 @img[shadow](assets/img/background.png)
 @snapend
 
----?image=assets/img/background.png
+---?image=slides/assets/img/background.png
 
 @snap[north span-100 headline]
 ## Now It's Your Turn Ch
