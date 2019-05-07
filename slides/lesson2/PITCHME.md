@@ -10,10 +10,10 @@
 @title[Define A Launch Configuration]
 
 ---?code=lesson02/main.tf&title=Terraform Main
-
+@snap[span-90]
 @[23-41](Lauch config)
 @[43-75](Autoscaling)
-
+@snapend
 ---?color=#E58537
 @title[Add A Little Imagination]
 
