@@ -9,11 +9,9 @@
 @snapend
 @title[Agenda]
 
-@snap[north-west]
-#### In this lesson we will be creating...
-@snapend
-
 @snap[west span-55]
+### In this lesson we will be creating...
+
 @ul[spaced text-black]
 - AutoScaling Group
 - Launch Configuration
