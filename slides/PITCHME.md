@@ -34,7 +34,7 @@
 @snapend
 
 @snap[east span-45]
-@img[shadow](slides/assets/img/background.png)
+@img[shadow](assets/img/background.png)
 @snapend
 
 ---?image=assets/img/background.png
