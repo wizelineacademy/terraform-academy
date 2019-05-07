@@ -37,7 +37,7 @@
 @img[shadow](assets/img/conference.png)
 @snapend
 
----?image=assets/img/presenter.jpg
+---?image=assets/img/background.png
 
 @snap[north span-100 headline]
 ## Now It's Your Turn
