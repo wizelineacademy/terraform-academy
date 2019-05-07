@@ -4,21 +4,9 @@
 
 ## Define A Launch Configuration
 
-```
-resource "aws_launch_configuration" "lc" {
-  lifecycle {
-    create_before_destroy = true
-  }
+---?code=lesson02/elb_asg/main.tf
 
-  name_prefix                 = "${var.metadata["appname"]}-${var.env}-lc-${var.metadata["appversion"]}-"
-  image_id                    = "${data.aws_ami.amazon_linux.id}"
-  instance_type               = "${var.instance_type}"
-  security_groups             = ["${aws_security_group.web.id}"]
-  user_data                   = "${data.template_file.deploy_sh.rendered}"
-  key_name                    = "${var.key_name}"
-  associate_public_ip_address = "${var.associate_public_ip_address}"
-}
-```
+@[23-41](Lauch config)
 
 ![](assets/img/background.png)
 
@@ -27,31 +15,7 @@ resource "aws_launch_configuration" "lc" {
 
 @snap[west span-50]
 ## Create An AutoScaling Group
-@snapend
 
-@snap[east span-50]
-```resource "aws_autoscaling_group" "asg" {
-  name_prefix               = "${var.metadata["appname"]}-${var.env}-asg-${var.metadata["appversion"]}-"
-  launch_configuration      = "${aws_launch_configuration.lc.name}"
-  availability_zones        = ["${data.aws_availability_zones.available.zone_ids}"]
-  load_balancers            = ["${aws_elb.elb.id}"]
-  health_check_type         = "${var.health_check_type}"
-  health_check_grace_period = "${var.health_check_grace_period}"
-  default_cooldown          = "${var.default_cooldown}"
-  min_size                  = "${var.min_size}"
-  max_size                  = "${var.max_size}"
-  wait_for_elb_capacity     = "${var.min_size}"
-  desired_capacity          = "${var.desired_capacity}"
-  vpc_zone_identifier       = ["${data.aws_subnet_ids.vpc_subnets.ids}"]
-
-  tags = "${list(
-    map("key", "Name",          "value", "${var.metadata["appname"]}-${var.env}-ec2-${var.metadata["appversion"]}",         "propagate_at_launch", true)
-  )}"
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}```
 @snapend
 
 ---?color=#E58537
