@@ -4,7 +4,7 @@ These steps helps you configure your AWS credentials into the requiered files an
 1. cd root of your git repo
 2. run the following command `docker run -it -v ${PWD}:/terraform wizelineacademy/wz_terraform:latest`
 3. Run `cd python`
-4.create a `variables.ini` file, following the same format as the `variables.ini.example`. Here, you'll add your AWS credentials, profile name and environment.
+4. Create a `variables.ini` file, following the same format as the `variables.ini.example`. Here, you'll add your AWS credentials, profile name and environment.
 5. Configure your AWS credentials run: `python3 awsconfig.py`
 6. Export your AWS configuration as env variables `source ./export.sh`
 7. initialize a Terraform backend on a specific lesson run:
