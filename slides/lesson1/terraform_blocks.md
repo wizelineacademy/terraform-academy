@@ -18,7 +18,9 @@ Resources can be things like virtual networks, compute instances, or higher-leve
 Also "input variables".
 
 In Terraform, "variables" almost always refers to input variables, which are key/value pair
+
 ---
+
 @snapend
 ```
 $ terraform plan \
@@ -27,6 +29,7 @@ $ terraform plan \
 ```
 
 ---
+
 @title[Types of Variables]
 @snap[west span-85]
 ### Types of Variables
@@ -38,7 +41,8 @@ $ terraform plan \
 - maps.
 @ulend
 @snapend
- ---
+
+---
 
 ## Strings
 ```
@@ -48,7 +52,9 @@ variable "image_id" {
   default = "ami-asbdas123"
 }
 ```
+
 ---
+
 ## Numbers
 ```
 variable "asg_num_of_instances" {
@@ -57,7 +63,9 @@ variable "asg_num_of_instances" {
   default = 2
 }
 ```
+
 ---
+
 ## Lists
 
 Lists are defined either explicitly or implicitly
@@ -73,7 +81,9 @@ variable "cidrs" {
   type = "list" 
 }
 ```
+
 ---
+
 ## Maps
 
 ```
