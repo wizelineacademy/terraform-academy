@@ -3,7 +3,9 @@
 The set of files used to describe infrastructure in Terraform is simply known as a Terraform configuration. (*.tf) 
 
 ---
-```hcl
+@title[provider]
+
+```
 provider "aws" {
   region = "us-east-2"
 }
@@ -13,6 +15,7 @@ resource "aws_instance" "web" {
   instance_type = "t2.micro"
 }
 ```
+@[1-3](provider)
 ---
 @title[Terraform Commands]
 #### Terraform Commands
