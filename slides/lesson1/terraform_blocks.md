@@ -98,7 +98,7 @@ Data sources allow data to be fetched or computed for use elsewhere in Terraform
 @snapend
 ---
 
-```hcl
+```
 data "aws_ami" "example" {
   most_recent = true
 
