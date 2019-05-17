@@ -2,7 +2,7 @@
 
 @title[What is a Resource?]
 @snap[west span-85]
-#### What is a Resource
+### What is a Resource
 
 In Terraform's configuration language: A Resource is a block that describes one or more infrastructure objects. 
 
@@ -13,7 +13,7 @@ Resources can be things like virtual networks, compute instances, or higher-leve
 
 @title[What is a Variable?]
 @snap[west span-85]
-#### What is a Variable
+### What is a Variable
 
 Also "input variables".
 
@@ -29,7 +29,7 @@ $ terraform plan \
 ---
 @title[Types of Variables]
 @snap[west span-85]
-#### Types of Variables
+### Types of Variables
 @ul[spaced text-black]
 - string.
 - number.
@@ -89,7 +89,7 @@ variable "amis" {
 ---
 @title[Data Souces]
 @snap[west span-85]
-#### Data Sources
+### Data Sources
 
 Data sources allow data to be fetched or computed for use elsewhere in Terraform configuration. Use of data sources allows a Terraform configuration to make use of information defined outside of Terraform, or defined by another separate Terraform configuration.
 

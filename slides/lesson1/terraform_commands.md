@@ -18,12 +18,12 @@ resource "aws_instance" "web" {
 @[1-3](provider)
 ---
 @title[Terraform Commands]
-#### Terraform Commands
+### Terraform Commands
 
 ---
 @title[What is Terraform?]
 @snap[west span-85]
-#### Terraform core commands
+### Terraform core commands
 @ul[spaced text-black]
 - init.
 - plan.
