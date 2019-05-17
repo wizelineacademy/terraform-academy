@@ -21,7 +21,7 @@
 @ulend
 @snapend
 
----?include=./what_is_terraform.md
+---?include=slides/lesson1/terraform_blocks/PITCHME.md
 ---?include=slides/lesson1/terraform_commands.md
 ---?include=slides/lesson1/terraform_blocks.md
 
