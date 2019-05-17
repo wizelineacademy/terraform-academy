@@ -11,7 +11,6 @@ Resources can be things like virtual networks, compute instances, or higher-leve
 
 ---
 
-
 @title[What is a Variable?]
 @snap[west span-85]
 #### What is a Variable
@@ -19,10 +18,9 @@ Resources can be things like virtual networks, compute instances, or higher-leve
 Also "input variables".
 
 In Terraform, "variables" almost always refers to input variables, which are key/value pair
-
+---
 @snapend
-
-```hcl
+```
 $ terraform plan \
   -var 'myvar1=foo' \
   -var 'myvar2=bar'
@@ -43,7 +41,7 @@ $ terraform plan \
  ---
 
 ## Strings
-```hcl
+```
 variable "image_id" {
   type        = string
   description = "The id of the machine image (AMI) to use for the server."
@@ -52,7 +50,7 @@ variable "image_id" {
 ```
 ---
 ## Numbers
-```hcl
+```
 variable "asg_num_of_instances" {
   type        = number
   description = "The id of the machine image (AMI) to use for the server."
@@ -64,7 +62,7 @@ variable "asg_num_of_instances" {
 
 Lists are defined either explicitly or implicitly
 
-```hcl
+```
 # implicitly by using brackets [...]
 variable "cidrs" { 
   default = ["10.0.0.0/16", "10.1.0.0/16"] 
@@ -78,7 +76,7 @@ variable "cidrs" {
 ---
 ## Maps
 
-```hcl
+```
 variable "amis" {
   type = "map"
   default = {
