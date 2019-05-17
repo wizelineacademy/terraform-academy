@@ -20,6 +20,8 @@
 - Assign a DNS record to that machine with terraform.
 @ulend
 @snapend
----?include=slides/lesson1/what_is_terraform.md
+
+---?include=./what_is_terraform.md
 ---?include=slides/lesson1/terraform_commands.md
+---?include=slides/lesson1/terraform_blocks.md
 
