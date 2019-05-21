@@ -2,7 +2,7 @@
 @title[What is Terraform?]
 ### Hands on work
 
----?code=lesson1/solution/main_hard_code.tf&title=Terraform Main
+---?code=slides/lesson1/solution/main_hard_code.tf&title=Terraform Main
 @snap[span-90]
 @[2-11](provider)
 @[13-21](setup default vpc)
