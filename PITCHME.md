@@ -10,6 +10,7 @@ Wizeline Academy
 ---?include=slides/lesson1/what_is_terraform.md
 ---?include=slides/lesson1/terraform_commands.md
 ---?include=slides/lesson1/terraform_blocks.md
+---?include=slides/lesson1/workshop.md
 
 ---?include=slides/lesson2/PITCHME.md
 ---?include=slides/lesson3/PITCHME.md
