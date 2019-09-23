@@ -40,7 +40,7 @@ resource "aws_security_group" "web" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = "${var.tags}"
+  tags = var.tags
 }
 
 resource "aws_instance" "web" {
@@ -59,7 +59,7 @@ resource "aws_instance" "web" {
   tags = merge(
     var.tags,
     {
-      "Name" = format("%s-%s", "user", "ec2")
+      "Name" = format("%s-%s", data.aws_caller_identity.current.user_id, "ec2")
     },
   )
 }

@@ -4,13 +4,13 @@ provider "aws" {
 }
 
 resource "aws_default_vpc" "default" {
-  tags = "${var.tags}"
+  tags = var.tags
 }
 
 resource "aws_security_group" "web" {
   name        = "${data.aws_caller_identity.current.user_id}-web"
   description = "Allow web traffic"
-  vpc_id      = "${aws_default_vpc.default.id}"
+  vpc_id      = aws_default_vpc.default.id
 
   ingress {
     from_port   = 22
@@ -33,11 +33,11 @@ resource "aws_security_group" "web" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = "${var.tags}"
+  tags = var.tags
 }
 
 resource "aws_instance" "web" {
-  ami           = "${data.aws_ami.amazon_linux.id}"
+  ami           = data.aws_ami.amazon_linux.id
   instance_type = "t2.micro"
   key_name      = "${var.instance_key}"
 
@@ -45,13 +45,17 @@ resource "aws_instance" "web" {
     command = "bash -c 'MAX=10; C=0; until curl -s -o /dev/null ${aws_instance.web.public_dns}; do [ $C -eq $MAX ] && { exit 1; } || sleep 10; ((C++)); done;' || false"
   }
 
-  user_data = "${data.template_file.user_data.rendered}"
+  user_data = data.template_file.user_data.rendered
 
-  vpc_security_group_ids = ["${aws_security_group.web.id}"]
+  vpc_security_group_ids = [aws_security_group.web.id]
 
-  tags = "${merge(var.tags, map("Name", format("%s-%s",data.aws_caller_identity.current.user_id,"ec2")))}"
+  tags = merge(
+    var.tags,
+    {
+      "Name" = format("%s-%s", data.aws_caller_identity.current.user_id, "ec2")
+    },
+  )
 }
-
 
 # Uncomment this if you have a hosted zone in your AWS account
 # resource "aws_route53_record" "dns_web" {
