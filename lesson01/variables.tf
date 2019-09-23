@@ -28,3 +28,9 @@ variable "domain" {
   description = "The domain name to use"
   type        = "string"
 }
+
+variable "instance_key" {
+  default     = "academy-ohio"
+  description = "AWS key created to access the instance via ssh"
+  type        = "string"
+}

@@ -31,6 +31,7 @@ data "template_file" "user_data" {
 
 data "aws_caller_identity" "current" {}
 
-data "aws_route53_zone" "current" {
-  name = "${var.domain}"
-}
+# Uncomment if you have a hosted zone on your AWS account
+# data "aws_route53_zone" "current" {
+#   name = "${var.domain}"
+# }
