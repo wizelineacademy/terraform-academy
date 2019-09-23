@@ -2,7 +2,7 @@
 # https://aws.amazon.com/amazon-linux-2/
 data "aws_ami" "amazon_linux" {
   most_recent = true
-  owners = ["amazon"]
+  owners      = ["amazon"]
 
   filter {
     name = "name"
