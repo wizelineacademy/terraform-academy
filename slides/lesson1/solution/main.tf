@@ -1,4 +1,4 @@
-// Configure AWS Cloud provider
+# Configure AWS Cloud provider
 provider "aws" {
   region = "us-east-2"
 }
@@ -56,7 +56,6 @@ resource "aws_instance" "web" {
     },
   )
 }
-
 
 # Uncomment this if you have a hosted zone in your AWS account
 # resource "aws_route53_record" "dns_web" {
