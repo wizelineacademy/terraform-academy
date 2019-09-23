@@ -23,9 +23,16 @@ variable "app_version" {
   type        = string
 }
 
-# Only uncommend if you have a hosted zone in Route53
+variable "instance_key" {
+  default     = "academy-ohio"
+  description = "AWS key created to access the instance via ssh"
+  type        = "string"
+}
+
+# Uncomment this if you have a domain on Route53
 # variable "domain" {
-#   default     = "mydomain.com"
+#   default     = "academy.wizeline.dev"
 #   description = "The domain name to use"
-#   type        = string
+#   type        = "string"
 # }
+
