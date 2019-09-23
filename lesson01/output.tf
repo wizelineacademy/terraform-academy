@@ -8,7 +8,7 @@
 #   value = aws_instance.web.public_dns
 # }
 
-# Only uncommend if you have a hosted zone in Route53
+# Only uncomment if you have a hosted zone in Route53
 # output "web_dns" {
 #   value = aws_route53_record.dns_web.name
 # }

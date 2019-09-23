@@ -29,10 +29,9 @@ variable "instance_key" {
   type        = "string"
 }
 
-# Only uncommend if you have a hosted zone in Route53
+# Only uncomment if you have a hosted zone in Route53
 # variable "domain" {
 #   default     = "academy.wizeline.dev"
 #   description = "The domain name to use"
 #   type        = "string"
 # }
-
