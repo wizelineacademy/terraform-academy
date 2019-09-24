@@ -59,9 +59,9 @@ resource "aws_instance" "web" {
 
 # Uncomment this if you have a hosted zone in your AWS account
 # resource "aws_route53_record" "dns_web" {
-#   zone_id = "${data.aws_route53_zone.current.zone_id}"
+#   zone_id = data.aws_route53_zone.current.zone_id
 #   name    = "${data.aws_caller_identity.current.user_id}.${var.domain}"
 #   type    = "A"
 #   ttl     = 300
-#   records = ["${aws_instance.web.public_ip}"]
+#   records = [aws_instance.web.public_ip]
 # }
