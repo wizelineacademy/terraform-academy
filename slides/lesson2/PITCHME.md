@@ -24,8 +24,8 @@ Sometimes you want to manage several similar objects, such as a fixed pool of co
 ---
 ```
 resource "aws_instance" "example" {
-  count         = 5
-  ami           = "ami-0b69ea66ff7391e80"
+  count = 5
+  ami = "ami-0b69ea66ff7391e80"
   instance_type = "t2.micro"
   tags {
     Name = "example-${count.index}"
@@ -51,7 +51,7 @@ output "instance_0_public_ip" {
   value = aws_instance.example[0].public_ip
 }
 ```
-@[2]Access attribute by index
+@[2](Access attribute by index)
 
 ---
 ```
@@ -110,7 +110,7 @@ instances_by_availability_zone = {
   ]
 }
 ```
-@[2](Group by availability_zone)
+@[2-8](Group by availability_zone)
 
 ---
 ### Dynamic Nested blocks
@@ -155,7 +155,6 @@ locals {
 
 resource "aws_autoscaling_group" "example" {
   # ...
-
   dynamic "tag" {
     for_each = local.standard_tags
 
@@ -167,17 +166,13 @@ resource "aws_autoscaling_group" "example" {
   }
 }
 ```
-@[11-19](Generates a new block for each element in standard_tags)
+@[10-18](Generates a new block for each element in standard_tags)
 
 ---
 ### Conditional Operator
 A conditional expression uses the value of a bool expression to select one of two values.
 
-The syntax of a conditional expression is as follows:
-
-```
-condition ? true_val : false_val
-```
+The syntax of a conditional expression is: `condition ? true_val : false_val`
 
 If condition is true then the result is true_val. If condition is false then the result is false_val.
 
@@ -188,11 +183,12 @@ variable "env" {
 }
 
 resource "aws_instance" "prod_web" {
-  count         = var.env == "production" ? 1 : 0
-  ami           = "ami-0b69ea66ff7391e80"
+  count = var.env == "production" ? 1 : 0
+  ami = "ami-0b69ea66ff7391e80"
   instance_type = "t2.micro"
 }
 ```
+@[6](Only creates resource when env is production)
 
 ---?color=var(--color-light-gray-2)
 @title[What is Terraform?]
