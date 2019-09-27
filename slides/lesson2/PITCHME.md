@@ -137,4 +137,4 @@ resource "aws_route53_record" "example" {
 @[97-112](Launch configuration)
 @[114-129](Autoscaling part 1)
 @[130-142](Autoscaling part 2)
-@[144-149](Autoscaling part 2)
+@[144-149](Output Load Balancer DNS)
