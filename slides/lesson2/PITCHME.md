@@ -173,7 +173,9 @@ resource "aws_autoscaling_group" "example" {
 ### Conditional Operator
 A conditional expression uses the value of a bool expression to select one of two values.
 
-The syntax of a conditional expression is: `condition ? true_val : false_val`
+The syntax of a conditional expression is:
+
+`condition ? true_val : false_val`
 
 If condition is true then the result is true_val. If condition is false then the result is false_val.
 
