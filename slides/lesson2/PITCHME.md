@@ -57,6 +57,7 @@ output "instance_0_public_ip" {
 ```
 instance_0_public_ip = 34.228.239.144
 ```
+@[1](Output of the 0th public IP)
 
 ---
 ### For expression
