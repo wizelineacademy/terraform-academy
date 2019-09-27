@@ -124,6 +124,9 @@ resource "aws_route53_record" "example" {
 @title[What is Terraform?]
 ### Hands on work
 
+---
+![Architecture Diagram](slides/assets/img/lesson02-diagram.png)
+
 ---?code=slides/lesson2/solution/main_hard_code.tf&title=Terraform Main
 @snap[span-90]
 @[1-4](Provider)
@@ -138,3 +141,6 @@ resource "aws_route53_record" "example" {
 @[114-129](Autoscaling part 1)
 @[130-142](Autoscaling part 2)
 @[144-149](Output Load Balancer DNS)
+
+---
+![Architecture Diagram](slides/assets/img/lesson02-diagram.png)
