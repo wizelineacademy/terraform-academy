@@ -8,16 +8,16 @@ https://github.com/gitpitch/the-template/blob/master/PITCHME.md
 
 ## Using Cloud9
 
-Use the following CloudFormation template to setup a Cloud9 environment in us-east-1 (N. Virginia), just click Next, Next, Next and Create Stack:
+Use the following CloudFormation template to setup a Cloud9 environment in us-east-1 (N. Virginia), just click _Next_, _Next_, _Next_ and _Create Stack_:
 
-[![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=Terraform-Academy&templateURL=https://cloudtitlan-public-cfn-templates.s3.amazonaws.com/terraform-academy.yaml)
+[![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=TerraformAcademy&templateURL=https://cloudtitlan-public-cfn-templates.s3.amazonaws.com/terraform-academy.yaml)
 
-Go to your [Cloud9 service](https://console.aws.amazon.com/cloud9/home) inside the AWS console and click on your new environment called **Terraform-Academy**.
+Go to your [Cloud9 service](https://console.aws.amazon.com/cloud9/home) inside the AWS console and click _Open IDE_ on your new environment called **TerraformAcademy**.
 
-Once inside use the terminal to install Terraform 0.12 with the following command:
+Once inside, use the terminal to install Terraform 0.12 with the following commands:
 
 ```
 cat /dev/null
 ```
 
-You can start working with the files located in the repo folder.
+You can start working with the files located in the **terraform-academy** folder.
