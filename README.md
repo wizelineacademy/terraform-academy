@@ -12,7 +12,7 @@ Use the following CloudFormation template to setup a Cloud9 environment in us-ea
 
 [![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=Terraform-Academy&templateURL=https://cloudtitlan-public-cfn-templates.s3.amazonaws.com/terraform-academy.yaml)
 
-Go to your Cloud9 service inside the AWS console and click on your new environment called **Terraform-Academy**.
+Go to your [Cloud9 service](https://console.aws.amazon.com/cloud9/home) inside the AWS console and click on your new environment called **Terraform-Academy**.
 
 Once inside use the terminal to install Terraform 0.12 with the following command:
 
