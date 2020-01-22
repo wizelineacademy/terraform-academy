@@ -17,7 +17,12 @@ Go to your [Cloud9 service](https://console.aws.amazon.com/cloud9/home) inside t
 Once inside, use the terminal to install Terraform 0.12 with the following commands:
 
 ```
-cat /dev/null
+mkdir -p $HOME/bin && cd $HOME/bin
+wget https://releases.hashicorp.com/terraform/0.12.19/terraform_0.12.19_linux_amd64.zip
+unzip terraform_0.12.19_linux_amd64.zip
+echo 'export PATH=$PATH:$HOME/bin' >> $HOME/.bashrc && source $HOME/.bashrc
+cd $HOME/environment/terraform-academy
+terraform version
 ```
 
 You can start working with the files located in the **terraform-academy** folder.
