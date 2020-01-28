@@ -10,7 +10,7 @@ https://github.com/gitpitch/the-template/blob/master/PITCHME.md
 
 Use the following CloudFormation template to setup a Cloud9 environment in us-east-1 (N. Virginia), just click _Next_, _Next_, _Next_ and _Create Stack_:
 
-[![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=TerraformAcademy&templateURL=https://cloudtitlan-public-cfn-templates.s3.amazonaws.com/terraform-academy.yaml)
+[![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=TerraformAcademy&templateURL=https://terraform-wizeline-academy.s3.amazonaws.com/cloud9-cfn-template.yaml)
 
 Go to your [Cloud9 service](https://console.aws.amazon.com/cloud9/home) inside the AWS console and click _Open IDE_ on your new environment called **TerraformAcademy**.
 
