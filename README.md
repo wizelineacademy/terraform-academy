@@ -6,7 +6,7 @@
 
 https://github.com/gitpitch/the-template/blob/master/PITCHME.md
 
-## Using Cloud9
+## Using Cloud9 (optional)
 
 Use the following CloudFormation template to setup a Cloud9 environment in us-east-1 (N. Virginia), just click _Next_, _Next_, _Next_ and _Create Stack_:
 
