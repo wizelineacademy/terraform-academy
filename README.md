@@ -2,7 +2,7 @@
 
 Hashicorp Terraform is an open-source tool to provision infrastructure resources in different service providers (including cloud platforms). It is used by many companies to manage their cloud-based solutions and speed up the development and deployment of their applications.
 
-This Academy course teaches you the basic concepts of Terraform in a easy-to-follow way using AWS as the cloud provider to provision resources. Make sure to follow instructur's directions to get the most out of this workshop and successfully plan, apply and destroy your resources.
+This Academy course teaches you the basic concepts of Terraform in an easy-to-follow way using AWS as the cloud provider. Make sure to follow the instructor's directions to get the most out of this workshop and successfully plan, apply and destroy your resources.
 
 ## Using Cloud9
 
