@@ -1,6 +1,6 @@
 # Terraform Academy
 
-Hashicorp Terraform is an open-source tool to provision infrastructure resources in different service providers (including cloud platforms). It is used by many companies to manage their cloud-based solutions and speed up the development and deployment of their applications.
+Hashicorp Terraform is an open-source tool to provision infrastructure resources in different cloud and service providers. It is used by many companies to manage their cloud-based solutions and speed up the development and deployment of their applications.
 
 This Academy course teaches you the basic concepts of Terraform in an easy-to-follow way using AWS as the cloud provider. Make sure to follow the instructor's directions to get the most out of this workshop and successfully plan, apply and destroy your resources.
 
