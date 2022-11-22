@@ -61,13 +61,13 @@ In this Lesson we'll learn about the creation a service in AWS with Load balance
                 resource "aws_security_group" "my_security_group" {
                 name = "primer-servidor-sg"
 
-                ingress {
-                    security_groups = [aws_security_group.alb.id]
-                    description = "Web port access"
-                    from_port = var.server_port
-                    to_port = var.server_port
-                    protocol = "TCP"
-                }
+                    ingress {
+                        security_groups = [aws_security_group.alb.id]
+                        description = "Web port access"
+                        from_port = var.server_port
+                        to_port = var.server_port
+                        protocol = "TCP"
+                    }
                 }
 
                 resource "aws_lb" "alb" {
@@ -94,7 +94,7 @@ In this Lesson we'll learn about the creation a service in AWS with Load balance
                     from_port = var.server_port
                     protocol = "TCP"
                     to_port = var.server_port
-                } 
+                    } 
                 }
 
                 data "aws_vpc" "default" {
@@ -107,13 +107,13 @@ In this Lesson we'll learn about the creation a service in AWS with Load balance
                 vpc_id = data.aws_vpc.default.id
                 protocol = "HTTP"
 
-                health_check {
-                    enabled = true
-                    matcher = "200"
-                    path = "/"
-                    port = "${var.server_port}"
-                    protocol = "HTTP"
-                }
+                    health_check {
+                        enabled = true
+                        matcher = "200"
+                        path = "/"
+                        port = "${var.server_port}"
+                        protocol = "HTTP"
+                    }
                 }
 
                 resource "aws_lb_target_group_attachment" "server1" {
@@ -132,9 +132,9 @@ In this Lesson we'll learn about the creation a service in AWS with Load balance
                 load_balancer_arn = aws_lb.alb.arn
                 port = var.lb_port
                 protocol = "HTTP"
-                default_action {
-                    target_group_arn = aws_lb_target_group.this.arn
-                    type = "forward"
-                }
+                    default_action {
+                        target_group_arn = aws_lb_target_group.this.arn
+                        type = "forward"
+                    }
                 }       
     </details>
