@@ -1,7 +1,7 @@
 
 # Lesson 01
 
-In this Lesson the wizeliner will learn about the principal commands of terraform:
+In this Lesson we'll learn about the principal commands of terraform:
 
 - Providers
 - Resources 
