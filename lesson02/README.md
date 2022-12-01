@@ -7,14 +7,14 @@ In this Lesson we'll learn about the creation a service in AWS with Load balance
 - My Second deploy in AWS
     <details>
         <summary>Solution</summary>
-        ```tf
-                resource "aws_default_subnet" "default_az1" {
-                    availability_zone = "us-east-1a"
+     ```tf
+            resource "aws_default_subnet" "default_az1" {
+                availability_zone = "us-east-1a"
 
-                    tags = {
-                        Name = "Default subnet for us-east-1a"
-                    }
+                tags = {
+                    Name = "Default subnet for us-east-1a"
                 }
+            }
 
                 resource "aws_default_subnet" "default_az2" {
                     availability_zone = "us-east-1b"
