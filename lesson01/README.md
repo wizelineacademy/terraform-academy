@@ -99,9 +99,18 @@ data "aws_ami" "example" {
       region = "us-east-1"
     }
 
+    resource "aws_default_subnet" "default_az1" {
+        availability_zone = "us-east-1a"
+
+        tags = {
+          Name = "Default subnet for us-east-1a"
+        }
+    }
+
     resource "aws_instance" "myServer" {
       ami                    = var.ubuntu_ami
       instance_type          = var.instance_type
+      subnet_id = aws_default_subnet.default_az1.id
       vpc_security_group_ids = [aws_security_group.my_security_group.id]
       user_data              = <<-EOF
                                     #!/bin/bash
