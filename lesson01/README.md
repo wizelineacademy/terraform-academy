@@ -132,3 +132,6 @@ data "aws_ami" "example" {
     }
   ```
 </details>
+
+![Diagram final infrastructure created]
+(https://github.com/wizelineacademy/terraform-academy/blob/master/lesson01/Lesson01_Diagram.png)
