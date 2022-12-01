@@ -13,12 +13,20 @@ In this Lesson we'll learn about the creation a service in AWS with Load balance
         </tr>
         <tr>
             <td>
-                data "aws_subnet" "az_a" {
+                resource "aws_default_subnet" "default_az1" {
                     availability_zone = "us-east-1a"
+
+                    tags = {
+                        Name = "Default subnet for us-east-1a"
+                    }
                 }
 
-                data "aws_subnet" "az_b" {
+                resource "aws_default_subnet" "default_az2" {
                     availability_zone = "us-east-1b"
+
+                    tags = {
+                        Name = "Default subnet for us-east-1b"
+                    }
                 }
 
                 /************************************
@@ -28,7 +36,7 @@ In this Lesson we'll learn about the creation a service in AWS with Load balance
                 resource "aws_instance" "server1" {
                     ami = var.ubuntu_ami["eu-east-1a"]
                     instance_type = var.instance_type
-                    subnet_id = data.aws_subnet.az_a.id
+                    subnet_id = aws_default_subnet.default_az1.id
                     vpc_security_group_ids = [ aws_security_group.my_security_group.id ]
                     user_data = <<-EOF
                                 #!/bin/bash
@@ -45,7 +53,7 @@ In this Lesson we'll learn about the creation a service in AWS with Load balance
                 resource "aws_instance" "server2" {
                     ami = var.ubuntu_ami["eu-east-1b"]
                     instance_type = var.instance_type
-                        subnet_id = data.aws_subnet.az_b.id
+                        subnet_id = aws_default_subnet.default_az2.id
                     vpc_security_group_ids = [ aws_security_group.my_security_group.id ]
                     user_data = <<-EOF
                                 #!/bin/bash
@@ -74,7 +82,7 @@ In this Lesson we'll learn about the creation a service in AWS with Load balance
                 load_balancer_type = "application"
                 name = "Terraform-alb"
                 security_groups = [aws_security_group.alb.id]
-                subnets = [ data.aws_subnet.az_a.id, data.aws_subnet.az_b.id ]
+                subnets = [ aws_default_subnet.default_az1.id, aws_default_subnet.default_az2.id ]
                 }
 
                 resource "aws_security_group" "alb" {
@@ -138,3 +146,5 @@ In this Lesson we'll learn about the creation a service in AWS with Load balance
                     }
                 }       
     </details>
+
+![Diagram final infrastructure created](https://github.com/wizelineacademy/terraform-academy/blob/master/lesson02/Lesson02_Diagram.png)
