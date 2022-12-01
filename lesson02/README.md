@@ -7,12 +7,7 @@ In this Lesson we'll learn about the creation a service in AWS with Load balance
 - My Second deploy in AWS
     <details>
         <summary>Solution</summary>
-        <table>
-        <tr>
-            <td><strong>main.tf</strong></td>
-        </tr>
-        <tr>
-            <td>
+        ```tf
                 resource "aws_default_subnet" "default_az1" {
                     availability_zone = "us-east-1a"
 
@@ -144,7 +139,8 @@ In this Lesson we'll learn about the creation a service in AWS with Load balance
                         target_group_arn = aws_lb_target_group.this.arn
                         type = "forward"
                     }
-                }       
+                }
+        ```       
     </details>
 
 ![Diagram final infrastructure created](https://github.com/wizelineacademy/terraform-academy/blob/master/lesson02/Lesson02_Diagram.png)
