@@ -23,7 +23,7 @@ The set of files used to describe infrastructure in Terraform is simply known as
 
 ## Concepts
 
-### ResourceS
+### Resources
 
 In Terraform's configuration language: A Resource is a block that describes one or more infrastructure objects.
 
@@ -38,7 +38,7 @@ resource "aws_instance" "web" {
 }
 ```
 
-### VariableS
+### Variables
 
 Also called "input variables". In Terraform, "variables" almost always refers to input variables, which are key/value pair.
 
