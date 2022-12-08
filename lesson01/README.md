@@ -1,18 +1,17 @@
-
 # Lesson 01
 
 In this Lesson we'll learn about the principal concepts of Terraform:
 
 - Providers
-- Resources 
+- Resources
 - Variables
 - Output
 - Principal commands:
-    * terraform validate
-    * terraform fmt
-    * terraform plan
-    * terraform apply
-    * terraform destroy
+  - terraform validate
+  - terraform fmt
+  - terraform plan
+  - terraform apply
+  - terraform destroy
 
 ## What is Terraform?
 
@@ -20,7 +19,7 @@ Terraform is a tool for building, changing, and versioning infrastructure safely
 
 The infrastructure Terraform can manage includes low-level components such as compute instances, storage, and networking, as well as high-level components such as DNS entries, SaaS features, etc.
 
-The set of files used to describe infrastructure in Terraform is simply known as a Terraform configuration. (*.tf)
+The set of files used to describe infrastructure in Terraform is simply known as a Terraform configuration. (\*.tf)
 
 ## Concepts
 
@@ -57,8 +56,8 @@ variable "ami_id" {
 How to pass values to a variable via CLI:
 
 ```tf
-$ terraform plan \  
-  -var 'myvar1=foo' \  
+$ terraform plan \
+  -var 'myvar1=foo' \
   -var 'myvar2=bar'
 ```
 
@@ -89,48 +88,60 @@ data "aws_ami" "example" {
 }
 ```
 
-## My first deploy in AWS
+## Exercise
+
+![Lesson01](./img/lesson01-diagram.png)
+
+
+**Instructions**
+
+Complete `main.tf` and `variables.tf` files to create the following resources:
+
+- Use a data source to get the default VPC of your account
+- Create Security Group in the default VPC that allows traffic to the application port
+- Create an EC2 server with a User Data script that runs a web server with a custom message
+
+Follow the Terraform workflow to test your changes:
+
+1. Write the `provider`, `data` and `resources` blocks in `*.tf` files
+2. Run a `terraform plan`
+3. Run a `terraform apply`
+4. After you validate that everything is working fine, destory the resources with `terraform destroy`
 
 <details>
   <summary>Solution</summary>
   
   ```tf
-    provider "aws" {
-      region = "us-east-1"
+  provider "aws" {
+    region = "us-east-1"
+  }
+  
+  data "aws_vpc" "default" {
+    default = true
+  }
+  
+  resource "aws_instance" "server" {
+    ami                    = var.ubuntu_ami
+    instance_type          = var.instance_type
+    vpc_security_group_ids = [aws_security_group.security_group.id]
+    user_data              = <<-EOF
+                                  #!/bin/bash
+                                  echo "Hello world!" > index.html
+                                  nohup busybox httpd -f -p ${var.server_port} &
+                                  EOF
+  }
+  
+  resource "aws_security_group" "security_group" {
+    name   = "first-server-sg"
+    vpc_id = data.aws_vpc.default.id
+  
+    ingress {
+      cidr_blocks = ["0.0.0.0/0"]
+      description = "Web port"
+      from_port   = var.server_port
+      to_port     = var.server_port
+      protocol    = "TCP"
     }
-
-    resource "aws_default_subnet" "default_az1" {
-        availability_zone = "us-east-1a"
-
-        tags = {
-          Name = "Default subnet for us-east-1a"
-        }
-    }
-
-    resource "aws_instance" "myServer" {
-      ami                    = var.ubuntu_ami
-      instance_type          = var.instance_type
-      subnet_id = aws_default_subnet.default_az1.id
-      vpc_security_group_ids = [aws_security_group.my_security_group.id]
-      user_data              = <<-EOF
-                                    #!/bin/bash
-                                    echo "Hello world!" > index.html
-                                    nohup busybox httpd -f -p ${var.server_port} & 
-                                    EOF
-    }
-
-    resource "aws_security_group" "my_security_group" {
-      name = "first-server-sg"
-
-      ingress {
-        cidr_blocks = ["0.0.0.0/0"]
-        description = "Web port"
-        from_port   = var.server_port
-        to_port     = var.server_port
-        protocol    = "TCP"
-      }
-    }
-  ```
+  }
+```
 </details>
-
-![Diagram final infrastructure created](https://github.com/wizelineacademy/terraform-academy/blob/master/lesson01/Lesson01_Diagram.png)
