@@ -25,7 +25,7 @@ Plan and apply your configuration files to validate your Terraform code.
   provider "aws" {
     region = "us-east-1"
   }
-  
+
   data "aws_vpc" "default" {
     default = true
   }
@@ -35,10 +35,14 @@ Plan and apply your configuration files to validate your Terraform code.
       name   = "vpc-id"
       values = [data.aws_vpc.default.id]
     }
+    
+    filter {
+      name   = "default-for-az"
+      values = [true]
+    }
   }
   
-  resource "aws_security_group" "my_sg" {
-    name        = "my_sg"
+  resource "aws_security_group" "lb_sg" {
     description = "Security group for my application"
     vpc_id      = data.aws_vpc.default.id
   
@@ -52,7 +56,6 @@ Plan and apply your configuration files to validate your Terraform code.
   }
   
   resource "aws_lb" "my_lb" {
-    name            = "academy"
     security_groups = [aws_security_group.my_sg.id]
     subnets         = data.aws_subnets.public.ids
   }
@@ -69,14 +72,12 @@ Plan and apply your configuration files to validate your Terraform code.
   }
   
   resource "aws_lb_target_group" "tg" {
-    name     = "academy"
     port     = var.server_port
     protocol = "HTTP"
     vpc_id   = data.aws_vpc.default.id
   }
   
-  resource "aws_security_group" "security_group" {
-    name   = "first-server-sg"
+  resource "aws_security_group" "instance_sg" {
     vpc_id = data.aws_vpc.default.id
   
     ingress {

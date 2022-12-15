@@ -132,7 +132,6 @@ Follow the Terraform workflow to test your changes:
   }
   
   resource "aws_security_group" "security_group" {
-    name   = "first-server-sg"
     vpc_id = data.aws_vpc.default.id
   
     ingress {
