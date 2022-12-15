@@ -1,147 +1,111 @@
 
 # Lesson 02
 
-In this Lesson we'll learn about the creation a service in AWS with Load balancer:
+In this Lesson we'll learn how to create a high-available setup for an application using AWS Auto Scaling groups
 
-- Creation load balancer service with EC2
-- My Second deploy in AWS
+## Hands-on
+
+![Lesson02](./img/lesson02-diagram.png)
+
+**Instructions**
+
+Complete `main.tf` and `variables.tf` files to create the following resources:
+
+- Use a data source to get the default VPC and subnets of your account
+- Create a couple of Security Groups for the Load Balancer and the EC2 instances
+- Create an Application Load Balancer with its associated resources (Listener and Target Group) to allow traffic from the internet
+- Create a Launch Template and Auto Scaling Group to run EC2 servers with a User Data script that runs a web server with a custom message
+
+Plan and apply your configuration files to validate your Terraform code.
+
 <details>
   <summary>Solution</summary>
   
   ```tf
-            resource "aws_default_subnet" "default_az1" {
-                availability_zone = "us-east-1a"
-
-                tags = {
-                    Name = "Default subnet for us-east-1a"
-                }
-            }
-
-                resource "aws_default_subnet" "default_az2" {
-                    availability_zone = "us-east-1b"
-
-                    tags = {
-                        Name = "Default subnet for us-east-1b"
-                    }
-                }
-
-                /************************************
-                EC2 instance definition
-                ************************************/
-
-                resource "aws_instance" "server1" {
-                    ami = var.ubuntu_ami["eu-east-1a"]
-                    instance_type = var.instance_type
-                    subnet_id = aws_default_subnet.default_az1.id
-                    vpc_security_group_ids = [ aws_security_group.my_security_group.id ]
-                    user_data = <<-EOF
-                                #!/bin/bash
-                                echo "Hi I'm Server1!" > index.html
-                                nohup busybox httpd -f -p ${var.server_port} & 
-                                EOF
-
-                    tags = {
-                    Name = "server-1"
-                    }
-                }
-
-
-                resource "aws_instance" "server2" {
-                    ami = var.ubuntu_ami["eu-east-1b"]
-                    instance_type = var.instance_type
-                        subnet_id = aws_default_subnet.default_az2.id
-                    vpc_security_group_ids = [ aws_security_group.my_security_group.id ]
-                    user_data = <<-EOF
-                                #!/bin/bash
-                                echo "Hi I'm Server2!" > index.html
-                                nohup busybox httpd -f -p ${var.server_port} & 
-                                EOF
-
-                    tags = {
-                    Name = "server-2"
-                    }
-                }
-
-                resource "aws_security_group" "my_security_group" {
-                name = "primer-servidor-sg"
-
-                    ingress {
-                        security_groups = [aws_security_group.alb.id]
-                        description = "Web port access"
-                        from_port = var.server_port
-                        to_port = var.server_port
-                        protocol = "TCP"
-                    }
-                }
-
-                resource "aws_lb" "alb" {
-                load_balancer_type = "application"
-                name = "Terraform-alb"
-                security_groups = [aws_security_group.alb.id]
-                subnets = [ aws_default_subnet.default_az1.id, aws_default_subnet.default_az2.id ]
-                }
-
-                resource "aws_security_group" "alb" {
-                name = "alb-sg"
-
-                ingress {
-                    cidr_blocks = [ "0.0.0.0/0" ]
-                    description = "Access port 80"
-                    from_port = var.lb_port
-                    protocol = "TCP"
-                    to_port = var.lb_port
-                } 
-
-                    egress {
-                    cidr_blocks = [ "0.0.0.0/0" ]
-                    description = "Access port 8080"
-                    from_port = var.server_port
-                    protocol = "TCP"
-                    to_port = var.server_port
-                    } 
-                }
-
-                data "aws_vpc" "default" {
-                default = true
-                }
-
-                resource "aws_lb_target_group" "this" {
-                name = "terraform-alb-target-group"
-                port = var.lb_port
-                vpc_id = data.aws_vpc.default.id
-                protocol = "HTTP"
-
-                    health_check {
-                        enabled = true
-                        matcher = "200"
-                        path = "/"
-                        port = "${var.server_port}"
-                        protocol = "HTTP"
-                    }
-                }
-
-                resource "aws_lb_target_group_attachment" "server1" {
-                target_group_arn = aws_lb_target_group.this.arn
-                target_id = aws_instance.server1.id
-                port = var.server_port
-                }
-
-                resource "aws_lb_target_group_attachment" "server2" {
-                target_group_arn = aws_lb_target_group.this.arn
-                target_id = aws_instance.server2.id
-                port = var.server_port
-                }
-
-                resource "aws_lb_listener" "this" {
-                load_balancer_arn = aws_lb.alb.arn
-                port = var.lb_port
-                protocol = "HTTP"
-                    default_action {
-                        target_group_arn = aws_lb_target_group.this.arn
-                        type = "forward"
-                    }
-                }
+  data "aws_vpc" "default" {
+    default = true
+  }
+  
+  data "aws_subnets" "public" {
+    filter {
+      name   = "vpc-id"
+      values = [data.aws_vpc.default.id]
+    }
+  }
+  
+  resource "aws_security_group" "my_sg" {
+    name        = "my_sg"
+    description = "Security group for my application"
+    vpc_id      = data.aws_vpc.default.id
+  
+    ingress {
+      description = "HTTP"
+      from_port   = 80
+      to_port     = 80
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
+  
+  resource "aws_lb" "my_lb" {
+    name            = "academy"
+    security_groups = [aws_security_group.my_sg.id]
+    subnets         = data.aws_subnets.public.ids
+  }
+  
+  resource "aws_lb_listener" "http" {
+    load_balancer_arn = aws_lb.my_lb.arn
+    port              = "80"
+    protocol          = "HTTP"
+  
+    default_action {
+      type             = "forward"
+      target_group_arn = aws_lb_target_group.tg.arn
+    }
+  }
+  
+  resource "aws_lb_target_group" "tg" {
+    name     = "academy"
+    port     = var.server_port
+    protocol = "HTTP"
+    vpc_id   = data.aws_vpc.default.id
+  }
+  
+  resource "aws_security_group" "security_group" {
+    name   = "first-server-sg"
+    vpc_id = data.aws_vpc.default.id
+  
+    ingress {
+      cidr_blocks = ["0.0.0.0/0"]
+      description = "Web port"
+      from_port   = var.server_port
+      to_port     = var.server_port
+      protocol    = "TCP"
+    }
+  }
+  
+  resource "aws_launch_template" "my_template" {
+    image_id               = var.ubuntu_ami
+    instance_type          = var.instance_type
+    vpc_security_group_ids = [aws_security_group.security_group.id]
+    user_data              = base64encode(<<-EOF
+                                    #!/bin/bash
+                                    echo "Hello world!" > index.html
+                                    nohup busybox httpd -f -p ${var.server_port} &
+                                    EOF
+                                    )
+  }
+  
+  resource "aws_autoscaling_group" "my_group" {
+    launch_template {
+      id      = aws_launch_template.my_template.id
+      version = aws_launch_template.my_template.latest_version
+    }
+    min_size            = 1
+    max_size            = 2
+    desired_capacity    = 2
+    vpc_zone_identifier = data.aws_subnets.public.ids
+    target_group_arns   = [aws_lb_target_group.tg.arn]
+  }
   ```
 </details>
-
-![Diagram final infrastructure created](https://github.com/wizelineacademy/terraform-academy/blob/master/lesson02/Lesson02_Diagram.png)

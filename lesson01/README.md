@@ -88,7 +88,7 @@ data "aws_ami" "example" {
 }
 ```
 
-## Exercise
+## Hands-on
 
 ![Lesson01](./img/lesson01-diagram.png)
 
