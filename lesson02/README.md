@@ -56,7 +56,7 @@ Plan and apply your configuration files to validate your Terraform code.
   }
   
   resource "aws_lb" "my_lb" {
-    security_groups = [aws_security_group.my_sg.id]
+    security_groups = [aws_security_group.lb_sg.id]
     subnets         = data.aws_subnets.public.ids
   }
   
@@ -92,7 +92,7 @@ Plan and apply your configuration files to validate your Terraform code.
   resource "aws_launch_template" "my_template" {
     image_id               = var.ubuntu_ami
     instance_type          = var.instance_type
-    vpc_security_group_ids = [aws_security_group.security_group.id]
+    vpc_security_group_ids = [aws_security_group.instance_sg.id]
     user_data              = base64encode(<<-EOF
                                     #!/bin/bash
                                     echo "Hello world!" > index.html
