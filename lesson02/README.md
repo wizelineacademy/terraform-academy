@@ -22,6 +22,10 @@ Plan and apply your configuration files to validate your Terraform code.
   <summary>Solution</summary>
   
   ```tf
+  provider "aws" {
+    region = "us-east-1"
+  }
+  
   data "aws_vpc" "default" {
     default = true
   }
