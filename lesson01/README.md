@@ -104,9 +104,10 @@ Complete `main.tf` and `variables.tf` files to create the following resources:
 Follow the Terraform workflow to test your changes:
 
 1. Write the `provider`, `data` and `resources` blocks in `*.tf` files
-2. Run a `terraform plan`
-3. Run a `terraform apply`
-4. After you validate that everything is working fine, destory the resources with `terraform destroy`
+2. Run a `terraform init`
+3. Run a `terraform plan`
+4. Run a `terraform apply`
+5. After you validate that everything is working fine, destory the resources with `terraform destroy`
 
 <details>
   <summary>Solution</summary>
